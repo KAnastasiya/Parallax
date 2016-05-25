@@ -3,8 +3,8 @@
 let gulp = require('gulp'),
   plugins = require('gulp-load-plugins')(),
   pngquant = require('imagemin-pngquant'),
-  browserSync = require('browser-sync'),
-  del = require('del');
+  browserSync = require('browser-sync');
+  // del = require('del');
 
 // HTML
 gulp.task('pug', () => {
@@ -98,7 +98,7 @@ gulp.task('watch', ['css', 'html', 'scripts', 'browserSync'], () => {
 
 // Build
 gulp.task('build', ['html', 'css', 'scripts', 'img'], () => {
-  let buildFonts = gulp.src('src/fonts/*')
+  let buildFonts = gulp.src('src/fonts/**/*')
   .pipe(gulp.dest('./fonts'));
 
   let buildHtml = gulp.src('src/*.html')
