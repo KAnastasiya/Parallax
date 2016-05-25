@@ -11,11 +11,11 @@ gulp.task('pug', () => {
   return gulp.src('src/pug/*.pug')
   .pipe(plugins.plumber({ errorHandler: plugins.notify.onError() }))
   .pipe(plugins.pug())
-  .pipe(gulp.dest('./'));
+  .pipe(gulp.dest('src/'));
 });
 
 gulp.task('html', ['pug'], () => {
-  gulp.src('./*.html')
+  gulp.src('src/*.html')
   .pipe(plugins.plumber({ errorHandler: plugins.notify.onError() }))
   .pipe(plugins.htmlhint.reporter('htmlhint-stylish'))
   .pipe(plugins.htmlhint.failReporter({ suppress: true }));
@@ -29,7 +29,7 @@ gulp.task('scss', () => {
   .pipe(plugins.sass())
   .pipe(plugins.autoprefixer(['last 3 versions', '> 1%'], { cascade: true }))
   .pipe(plugins.sourcemaps.write())
-  .pipe(gulp.dest('./css'))
+  .pipe(gulp.dest('src/css'))
   .pipe(browserSync.reload({stream: true}));
 });
 
@@ -40,7 +40,7 @@ gulp.task('css', ['scss'], () => {
     .pipe(plugins.csslint.reporter())
     .pipe(plugins.cssnano())
     .pipe(plugins.rename({suffix: '.min'}))
-    .pipe(gulp.dest('./css'));
+    .pipe(gulp.dest('src/css'));
 });
 
 // Scripts
@@ -54,7 +54,7 @@ gulp.task('scripts', () => {
   .pipe(plugins.eslint.failAfterError())
   .pipe(plugins.uglifyjs())
   .pipe(plugins.rename({suffix: '.min'}))
-  .pipe(gulp.dest('./js'));
+  .pipe(gulp.dest('src/js'));
 });
 
 // gulp.task('jsdoc', ['scripts'], (cb) => {
