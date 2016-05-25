@@ -11,11 +11,11 @@ gulp.task('pug', () => {
   return gulp.src('src/pug/*.pug')
   .pipe(plugins.plumber({ errorHandler: plugins.notify.onError() }))
   .pipe(plugins.pug())
-  .pipe(gulp.dest('src'));
+  .pipe(gulp.dest('./'));
 });
 
 gulp.task('html', ['pug'], () => {
-  gulp.src('src/*.html')
+  gulp.src('./*.html')
   .pipe(plugins.plumber({ errorHandler: plugins.notify.onError() }))
   .pipe(plugins.htmlhint.reporter('htmlhint-stylish'))
   .pipe(plugins.htmlhint.failReporter({ suppress: true }));
@@ -29,7 +29,7 @@ gulp.task('scss', () => {
   .pipe(plugins.sass())
   .pipe(plugins.autoprefixer(['last 3 versions', '> 1%'], { cascade: true }))
   .pipe(plugins.sourcemaps.write())
-  .pipe(gulp.dest('src/css'))
+  .pipe(gulp.dest('./css'))
   .pipe(browserSync.reload({stream: true}));
 });
 
@@ -40,7 +40,7 @@ gulp.task('css', ['scss'], () => {
     .pipe(plugins.csslint.reporter())
     .pipe(plugins.cssnano())
     .pipe(plugins.rename({suffix: '.min'}))
-    .pipe(gulp.dest('src/css'));
+    .pipe(gulp.dest('./css'));
 });
 
 // Scripts
@@ -54,7 +54,7 @@ gulp.task('scripts', () => {
   .pipe(plugins.eslint.failAfterError())
   .pipe(plugins.uglifyjs())
   .pipe(plugins.rename({suffix: '.min'}))
-  .pipe(gulp.dest('src/js'));
+  .pipe(gulp.dest('./js'));
 });
 
 // gulp.task('jsdoc', ['scripts'], (cb) => {
@@ -78,12 +78,12 @@ gulp.task('img', () => {
     svgoPlugins: [{removeViewBox: false}],
     une: [pngquant()]
   })))
-  .pipe(gulp.dest('dist/img'));
+  .pipe(gulp.dest('./img'));
 });
 
-gulp.task('clean', () => {
-  return del.sync('dist');
-});
+// gulp.task('clean', () => {
+//   return del.sync('./');
+// });
 
 gulp.task('clear', () => {
   return plugins.cache.clearAll();
@@ -97,17 +97,17 @@ gulp.task('watch', ['css', 'html', 'scripts', 'browserSync'], () => {
 });
 
 // Build
-gulp.task('build', ['clean', 'html', 'css', 'scripts', 'img'], () => {
+gulp.task('build', ['html', 'css', 'scripts', 'img'], () => {
   let buildFonts = gulp.src('src/fonts/*')
-  .pipe(gulp.dest('dist/fonts'));
+  .pipe(gulp.dest('./fonts'));
 
   let buildHtml = gulp.src('src/*.html')
-  .pipe(gulp.dest('dist'));
+  .pipe(gulp.dest('./'));
 
   let buildCss = gulp.src('src/css/styles.min.css')
-  .pipe(gulp.dest('dist/css'));
+  .pipe(gulp.dest('./css'));
 
   let buildScripts = gulp.src('src/js/*.js')
   .pipe(plugins.removelogs())
-  .pipe(gulp.dest('dist/js'));
+  .pipe(gulp.dest('./js'));
 });
