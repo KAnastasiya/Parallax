@@ -1,0 +1,78 @@
+@import "../materialize/sass/components/color";
+
+$primary-color:        color('teal', 'base');
+$primary-color-light:  color('teal', 'lighten-2');
+$navbar-font-color:    color('grey', 'darken-3');
+
+$roboto-font-path:     "../fonts/roboto/";
+
+$h3-fontsize:          2.3rem;
+$h4-fontsize:          1.58rem;
+
+@import "../materialize/sass/components/variables";
+@import "../materialize/sass/components/normalize";
+@import "../materialize/sass/components/global";
+@import "../materialize/sass/components/icons-material-design";
+@import "../materialize/sass/components/grid";
+@import "../materialize/sass/components/navbar";
+@import "../materialize/sass/components/roboto";
+@import "../materialize/sass/components/typography";
+@import "../materialize/sass/components/buttons";
+@import "../materialize/sass/components/waves";
+@import "../materialize/sass/components/collapsible";
+@import "../materialize/sass/components/sideNav";
+
+h1 {
+  color: $primary-color-light;
+}
+
+h5 {
+  font-weight: 300;
+}
+
+p  {
+  font-weight: 300;
+  line-height: 2;
+}
+
+i.large {
+  font-size: 3.5rem;
+  color: color('brown', 'base');
+}
+
+nav {
+  background-color: #fff;
+  .button-collapse {
+    color: $primary-color;
+  }
+}
+
+footer.page-footer {
+  margin-top: 0;
+  * {
+    font-weight: 400;
+  }
+}
+
+.card-block {
+  padding: 15px;
+}
+
+.parallax-container {
+  height: 380px;
+  display: flex;
+  .section {
+    width: 100%;
+    margin: auto;
+  }
+}
+
+.parallax {
+  min-height: inherit;
+  height: 100%;
+}
+
+.parallax img {
+  display: block;
+  transform: translate3d(-50%, 211px, 0px);
+}
